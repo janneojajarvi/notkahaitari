@@ -2,71 +2,90 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <title>Virtuaalinen Notka-haitari (G♭)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Virtuaalinen Notka-haitari (Mobiili)</title>
   <style>
-    body { font-family: sans-serif; background: #222; color: #fff; text-align: center; margin: 20px; }
-    .accordion { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-    .column { display: flex; flex-direction: column; gap: 8px; }
-    .column h3 { margin-bottom: 5px; color: #f0a500; }
-    button { 
-      padding: 12px 18px; font-size: 14px; cursor: pointer; border: none; 
-      border-radius: 6px; background: #444; color: #fff; transition: 0.1s;
+    * { box-sizing: border-box; touch-action: manipulation; user-select: none; }
+    body { 
+      font-family: sans-serif; background: #1a1a1a; color: #fff; 
+      margin: 0; padding: 10px; height: 100vh; display: flex; flex-direction: column;
     }
-    button:active { background: #f0a500; color: #000; }
-    .chord-btn { background: #2a5298; }
+    h1 { font-size: 1.1rem; margin: 0 0 5px 0; text-align: center; }
+    
+    /* Layout: Vasemmalla bassot+soinnut, oikealla melodia */
+    .accordion-container { 
+      display: flex; flex: 1; gap: 10px; height: calc(100vh - 40px); overflow: hidden; 
+    }
+    
+    .left-side { 
+      flex: 1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; 
+    }
+    .right-side { 
+      flex: 1.2; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; 
+      padding-right: 5px;
+    }
+    
+    .section-title { font-size: 0.85rem; color: #f0a500; margin: 4px 0; text-align: center; }
+    
+    button { 
+      width: 100%; min-height: 44px; font-size: 13px; font-weight: bold;
+      border: none; border-radius: 8px; color: #fff; background: #333;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    button:active { background: #f0a500 !important; color: #000; }
+    
     .bass-btn { background: #1e3c72; }
+    .chord-btn { background: #2a5298; }
+    .melody-btn { background: #444; }
   </style>
 </head>
 <body>
 
-  <h1>Virtuaalinen Notka-haitari (G♭-duuri)</h1>
+  <h1>Virtuaalinen Notka-haitari (G♭)</h1>
 
+  <div class="accordion-container">
+    <!-- VASEMPI PUOLI: BASSOT & SOINNUT -->
+    <div class="left-side">
+      <div class="section-title">Bassot</div>
+      <button class="bass-btn" onclick="playFreq([185.00])">G, (G♭3)</button>
+      <button class="bass-btn" onclick="playFreq([207.65])">A, (A♭3)</button>
+      <button class="bass-btn" onclick="playFreq([233.08])">B, (B♭3)</button>
+      <button class="bass-btn" onclick="playFreq([246.94])">C (C♭4)</button>
+      <button class="bass-btn" onclick="playFreq([138.59])">D, (D♭3)</button>
+      <button class="bass-btn" onclick="playFreq([155.56])">E, (E♭3)</button>
 
-  <div class="accordion">
-    <!-- MELODIASÄVELET (G♭3 - C♭5) -->
-    <div class="column">
-      <h3>Melodia</h3>
-      <button onclick="playFreq([185.00])">G, (G♭3)</button>
-      <button onclick="playFreq([207.65])">A, (A♭3)</button>
-      <button onclick="playFreq([233.08])">B, (B♭3)</button>
-      <button onclick="playFreq([246.94])">C (C♭4)</button>
-      <button onclick="playFreq([277.18])">D (D♭4)</button>
-      <button onclick="playFreq([293.66])">=D (D4 luonnollinen)</button>
-      <button onclick="playFreq([311.13])">E (E♭4)</button>
-      <button onclick="playFreq([349.23])">F (F4)</button>
-      <button onclick="playFreq([369.99])">G (G♭4)</button>
-      <button onclick="playFreq([415.30])">A (A♭4)</button>
-      <button onclick="playFreq([466.16])">B (B♭4)</button>
-      <button onclick="playFreq([493.88])">c (C♭5)</button>
-      <button onclick="playFreq([554.37])">d (D♭5)</button>
-      <button onclick="playFreq([622.25])">e (E♭5)</button>
-      <button onclick="playFreq([698.46])">f (F5)</button>
-      <button onclick="playFreq([739.99])">g (G♭5)</button>
-      <button onclick="playFreq([830.61])">a (A♭5)</button>
-      <button onclick="playFreq([932.33])">b (B♭5)</button>
-      <button onclick="playFreq([493.88])">c' (C♭5)</button>
-    </div>
-
-    <!-- SOINNUT -->
-    <div class="column">
-      <h3>Soinnut</h3>
+      <div class="section-title">Soinnut</div>
       <button class="chord-btn" onclick="playFreq([277.18, 369.99, 466.16])">G♭ (I)</button>
       <button class="chord-btn" onclick="playFreq([246.94, 311.13, 369.99])">C♭ (IV)</button>
       <button class="chord-btn" onclick="playFreq([277.18, 349.23, 415.30])">D♭ (V)</button>
       <button class="chord-btn" onclick="playFreq([207.65, 246.94, 311.13])">A♭m (II)</button>
-      <button class="chord-btn" onclick="playFreq([233.08, 293.66, 349.23])">B♭ (III#3)</button>
+      <button class="chord-btn" onclick="playFreq([233.08, 293.66, 349.23])">B♭ (V duuri)</button>
       <button class="chord-btn" onclick="playFreq([311.13, 369.99, 466.16])">E♭m (VI)</button>
     </div>
 
-    <!-- BASSOT -->
-    <div class="column">
-      <h3>Bassot</h3>
-      <button class="bass-btn" onclick="playFreq([185.00])">G, (G♭3)</button>
-      <button class="bass-btn" onclick="playFreq([246.94])">C (C♭4)</button>
-      <button class="bass-btn" onclick="playFreq([138.59])">D, (D♭3)</button>
-      <button class="bass-btn" onclick="playFreq([207.65])">A, (A♭3)</button>
-      <button class="bass-btn" onclick="playFreq([233.08])">B, (B♭3)</button>
-      <button class="bass-btn" onclick="playFreq([155.56])">E, (E♭3)</button>
+    <!-- OIKEA PUOLI: MELODIA (VIERITETTÄVÄ) -->
+    <div class="right-side">
+      <div class="section-title">Melodia</div>
+      <button class="melody-btn" onclick="playFreq([185.00])">G, (G♭3)</button>
+      <button class="melody-btn" onclick="playFreq([207.65])">A, (A♭3)</button>
+      <button class="melody-btn" onclick="playFreq([233.08])">B, (B♭3)</button>
+      <button class="melody-btn" onclick="playFreq([246.94])">C (C♭4)</button>
+      <button class="melody-btn" onclick="playFreq([277.18])">D (D♭4)</button>
+      <button class="melody-btn" onclick="playFreq([293.66])">=D (D4)</button>
+      <button class="melody-btn" onclick="playFreq([311.13])">E (E♭4)</button>
+      <button class="melody-btn" onclick="playFreq([349.23])">F (F4)</button>
+      <button class="melody-btn" onclick="playFreq([369.99])">G (G♭4)</button>
+      <button class="melody-btn" onclick="playFreq([415.30])">A (A♭4)</button>
+      <button class="melody-btn" onclick="playFreq([466.16])">B (B♭4)</button>
+      <button class="melody-btn" onclick="playFreq([493.88])">c (C♭5)</button>
+      <button class="melody-btn" onclick="playFreq([554.37])">d (D♭5)</button>
+      <button class="melody-btn" onclick="playFreq([622.25])">e (E♭5)</button>
+      <button class="melody-btn" onclick="playFreq([698.46])">f (F5)</button>
+      <button class="melody-btn" onclick="playFreq([739.99])">g (G♭5)</button>
+      <button class="melody-btn" onclick="playFreq([830.61])">a (A♭5)</button>
+      <button class="melody-btn" onclick="playFreq([932.33])">b (B♭5)</button>
+      <button class="melody-btn" onclick="playFreq([493.88])">c' (C♭5)</button>
     </div>
   </div>
 
