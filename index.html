@@ -20,9 +20,10 @@
 <body>
 
   <h1>Virtuaalinen Notka-haitari (G♭)</h1>
-  <p>Paina napteja kuullaksesi sävelet ja soinnut</p>
+  <p>Paina nappeja kuullaksesi sävelet ja soinnut</p>
 
   <div class="accordion">
+    <!-- MELODIASÄVELET -->
     <div class="column">
       <h3>Melodia</h3>
       <button onclick="playFreq([196.00])">G, (G♭2)</button>
@@ -46,16 +47,18 @@
       <button onclick="playFreq([1046.50])">c' (C♭5)</button>
     </div>
 
+    <!-- SOINNUT -->
     <div class="column">
       <h3>Soinnut</h3>
       <button class="chord-btn" onclick="playFreq([293.66, 392.00, 493.88])">G♭ (I)</button>
       <button class="chord-btn" onclick="playFreq([261.63, 329.63, 392.00])">C♭ (IV)</button>
       <button class="chord-btn" onclick="playFreq([293.66, 349.23, 440.00])">D♭ (V)</button>
       <button class="chord-btn" onclick="playFreq([220.00, 261.63, 329.63])">A♭m (II)</button>
-      <button class="chord-btn" onclick="playFreq([246.94, 293.66, 349.23])">B♭ (V)</button>
+      <button class="chord-btn" onclick="playFreq([246.94, 293.66, 349.23])">B♭ (V duuri)</button>
       <button class="chord-btn" onclick="playFreq([329.63, 392.00, 493.88])">E♭m (VI)</button>
     </div>
 
+    <!-- BASSOT -->
     <div class="column">
       <h3>Bassot</h3>
       <button class="bass-btn" onclick="playFreq([98.00])">G, (G♭)</button>
