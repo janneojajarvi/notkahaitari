@@ -12,7 +12,6 @@
     }
     h1 { font-size: 1.1rem; margin: 0 0 5px 0; text-align: center; }
     
-    /* Layout: Vasemmalla bassot+soinnut, oikealla melodia */
     .accordion-container { 
       display: flex; flex: 1; gap: 10px; height: calc(100vh - 40px); overflow: hidden; 
     }
@@ -45,14 +44,14 @@
   <h1>Virtuaalinen Notka-haitari (G♭)</h1>
 
   <div class="accordion-container">
-    <!-- VASEMPI PUOLI: BASSOT & SOINNUT -->
+    <!-- VASEMPI PUOLI: BASSOT & SOINNUT SAMASSA JÄRJESTYKSESSÄ -->
     <div class="left-side">
       <div class="section-title">Bassot</div>
       <button class="bass-btn" onclick="playFreq([185.00])">G, (G♭3)</button>
-      <button class="bass-btn" onclick="playFreq([207.65])">A, (A♭3)</button>
-      <button class="bass-btn" onclick="playFreq([233.08])">B, (B♭3)</button>
       <button class="bass-btn" onclick="playFreq([246.94])">C (C♭4)</button>
       <button class="bass-btn" onclick="playFreq([138.59])">D, (D♭3)</button>
+      <button class="bass-btn" onclick="playFreq([207.65])">A, (A♭3)</button>
+      <button class="bass-btn" onclick="playFreq([233.08])">B, (B♭3)</button>
       <button class="bass-btn" onclick="playFreq([155.56])">E, (E♭3)</button>
 
       <div class="section-title">Soinnut</div>
@@ -64,7 +63,7 @@
       <button class="chord-btn" onclick="playFreq([311.13, 369.99, 466.16])">E♭m (VI)</button>
     </div>
 
-    <!-- OIKEA PUOLI: MELODIA (VIERITETTÄVÄ) -->
+    <!-- OIKEA PUOLI: MELODIA -->
     <div class="right-side">
       <div class="section-title">Melodia</div>
       <button class="melody-btn" onclick="playFreq([185.00])">G, (G♭3)</button>
