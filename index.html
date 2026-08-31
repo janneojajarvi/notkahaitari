@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtuaalinen Notka-haitari</title>
+  <style>
+    body { font-family: sans-serif; background: #222; color: #fff; text-align: center; margin: 20px; }
+    .accordion { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+    .column { display: flex; flex-direction: column; gap: 8px; }
+    .column h3 { margin-bottom: 5px; color: #f0a500; }
+    button { 
+      padding: 12px 18px; font-size: 14px; cursor: pointer; border: none; 
+      border-radius: 6px; background: #444; color: #fff; transition: 0.1s;
+    }
+    button:active { background: #f0a500; color: #000; }
+    .chord-btn { background: #2a5298; }
+    .bass-btn { background: #1e3c72; }
+  </style>
+</head>
+<body>
+
+  <h1>Virtuaalinen Notka-haitari (G♭)</h1>
+  <p>Paina napteja kuullaksesi sävelet ja soinnut</p>
+
+  <div class="accordion">
+    <div class="column">
+      <h3>Melodia</h3>
+      <button onclick="playFreq([196.00])">G, (G♭2)</button>
+      <button onclick="playFreq([220.00])">A, (A♭2)</button>
+      <button onclick="playFreq([246.94])">B, (B♭2)</button>
+      <button onclick="playFreq([261.63])">C (C♭3)</button>
+      <button onclick="playFreq([293.66])">D (D♭3)</button>
+      <button onclick="playFreq([311.13])"> =D (D3)</button>
+      <button onclick="playFreq([329.63])">E (E♭3)</button>
+      <button onclick="playFreq([349.23])">F (F3)</button>
+      <button onclick="playFreq([392.00])">G (G♭3)</button>
+      <button onclick="playFreq([440.00])">A (A♭3)</button>
+      <button onclick="playFreq([493.88])">B (B♭3)</button>
+      <button onclick="playFreq([523.25])">c (C♭4)</button>
+      <button onclick="playFreq([587.33])">d (D♭4)</button>
+      <button onclick="playFreq([659.25])">e (E♭4)</button>
+      <button onclick="playFreq([698.46])">f (F4)</button>
+      <button onclick="playFreq([783.99])">g (G♭4)</button>
+      <button onclick="playFreq([880.00])">a (A♭4)</button>
+      <button onclick="playFreq([987.77])">b (B♭4)</button>
+      <button onclick="playFreq([1046.50])">c' (C♭5)</button>
+    </div>
+
+    <div class="column">
+      <h3>Soinnut</h3>
+      <button class="chord-btn" onclick="playFreq([293.66, 392.00, 493.88])">G♭ (I)</button>
+      <button class="chord-btn" onclick="playFreq([261.63, 329.63, 392.00])">C♭ (IV)</button>
+      <button class="chord-btn" onclick="playFreq([293.66, 349.23, 440.00])">D♭ (V)</button>
+      <button class="chord-btn" onclick="playFreq([220.00, 261.63, 329.63])">A♭m (II)</button>
+      <button class="chord-btn" onclick="playFreq([246.94, 311.13, 349.23])">B♭ (V duuri)</button>
+      <button class="chord-btn" onclick="playFreq([329.63, 392.00, 493.88])">E♭m (VI)</button>
+    </div>
+
+    <div class="column">
+      <h3>Bassot</h3>
+      <button class="bass-btn" onclick="playFreq([98.00])">G, (G♭)</button>
+      <button class="bass-btn" onclick="playFreq([110.00])">A, (A♭)</button>
+      <button class="bass-btn" onclick="playFreq([123.47])">B, (B♭)</button>
+      <button class="bass-btn" onclick="playFreq([130.81])">C (C♭)</button>
+      <button class="bass-btn" onclick="playFreq([73.42])">D, (D♭)</button>
+      <button class="bass-btn" onclick="playFreq([82.41])">E, (E♭)</button>
+    </div>
+  </div>
+
+  <script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playFreq(freqArray) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      
+      freqArray.forEach(freq => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        // Haitarimainen soundi (sahalaita-aalto)
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        
+        // Lyhyt äänen vaimennus (envelope)
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      });
+    }
+  </script>
+</body>
+</html>
